@@ -23,7 +23,11 @@ write_files:
       }
 runcmd:
   - service nginx restart
+  - mkdir "/home/vagrant/myappkevin"
+  - cd "/home/vagrant/myappkevin"
   - git clone https://github.com/Azure-Samples/nodejs-docs-hello-world.git
-  - cd "/home/vagrant/nodejs-docs-hello-world/"
+  - cd "/home/vagrant/myappkevin/nodejs-docs-hello-world"
   - npm init
-  - nodejs index.js
+  - npm install -g pm2
+  - npm install express -y
+  - pm2 start -f index.js
